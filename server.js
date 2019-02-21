@@ -1,3 +1,4 @@
+require('newrelic')
 const { convert } = require('convert-svg-to-png')
 const express = require('express')
 const morgan = require('morgan')
