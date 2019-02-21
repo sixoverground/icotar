@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
     "start": "nodemon server.js"
   },
@@ -10,6 +13,7 @@
     "convert-svg-to-png": "^0.5.0",
     "express": "^4.16.4",
     "morgan": "^1.9.1",
+    "newrelic": "^5.5.0",
     "seedrandom": "^2.4.4",
     "serve-favicon": "^2.5.0",
     "x2js": "^3.2.6"
