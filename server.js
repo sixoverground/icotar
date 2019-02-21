@@ -147,7 +147,7 @@ router.get('/:hash', (req, res, next) => {
 
 router.get('/', (req, res, next) => {
   console.log('root')
-  return res.json({message: 'root'})
+  return res.json({message: 'Hello, from Icotar!'})
 })
 
 app.use('/', router)
