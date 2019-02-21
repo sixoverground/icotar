@@ -14,6 +14,7 @@ block content
     code https://icotar.com/avatar/:hash
     p Where <pre>:hash</pre> is replaced with anything you like. But <strong>don't</strong> use any sensitive or personal data here! For example, here is a base URL:
     code https://icotar.com/avatar/craig
+    img(src='https://icotar.com/avatar/craig')
 
     h4 File Types
     p All avatars are served as SVG files by default. If you require a <strong>file-type extension</strong> then you can add an optional <pre>.svg</pre> extension to that URL:
@@ -24,6 +25,9 @@ block content
     h4 Size
     p By default, PNG images are presented at 80px by 80px if no size parameter is supplied. You may request a specific image size, which will be dynamically delivered from Icotar by using the <pre>s=</pre> or <pre>size=</pre> parameter and passing a single pizel dimension (since Icotars are square):
     code https://icotar.com/avatar/craig.png?s=200
+    img(src='https://icotar.com/avatar/craig?s=20')
+    img(src='https://icotar.com/avatar/craig?s=80')
+    img(src='https://icotar.com/avatar/craig?s=200')
     p You may request images anywhere from <strong>1px up to 1024px</strong>.
 
     h4 Secure Requests
