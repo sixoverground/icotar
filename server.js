@@ -1,8 +1,12 @@
+const dotenv = require('dotenv')
+const path = require('path')
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: path.join(__dirname, '/.env') })
+}
 require('newrelic')
 const { convert } = require('convert-svg-to-png')
 const express = require('express')
 const morgan = require('morgan')
-const path = require('path')
 const favicon = require('serve-favicon')
 const X2JS = require('x2js')
 
