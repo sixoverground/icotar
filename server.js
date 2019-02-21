@@ -3,7 +3,7 @@ const path = require('path')
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ path: path.join(__dirname, '/.env') })
 }
-require('newrelic')
+require('newrelic') 
 const { convert } = require('convert-svg-to-png')
 const express = require('express')
 const morgan = require('morgan')
