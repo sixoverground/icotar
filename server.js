@@ -4,14 +4,14 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ path: path.join(__dirname, '/.env') })
 }
 require('newrelic') 
-const { convert } = require('convert-svg-to-png')
+// const { convert } = require('convert-svg-to-png')
 const express = require('express')
-const morgan = require('morgan')
-const favicon = require('serve-favicon')
-const X2JS = require('x2js')
-
 const fs = require('fs')
+const morgan = require('morgan')
 const seedrandom = require('seedrandom')
+const favicon = require('serve-favicon')
+const sharp = require('sharp')
+const X2JS = require('x2js')
 
 const app = express()
 
@@ -128,9 +128,18 @@ router.get('/:hash.svg', (req, res, next) => {
 router.get('/:hash.png', async (req, res, next) => {
   const hash = req.params.hash
   const size = req.query.s || 80
-  console.log('hash svg', hash)
+  console.log('hash svg', hash, size)
   const svg = generateSvg(hash, colors, icons)
-  const png = await convert(svg, {width: size, height: size})
+  console.log('svg', svg)
+  // const png = await convert(svg, {width: size, height: size})
+  const png = await sharp(Buffer.from(svg), {
+      density: 72 * parseInt(size) / 32
+    })
+    .resize(parseInt(size), parseInt(size))
+    .png()
+    .toBuffer()
+  console.log('png', png)
+
   res.status(200)
   res.setHeader('Content-Type', 'image/png')
   return res.end(png)
