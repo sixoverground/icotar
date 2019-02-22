@@ -1,10 +1,10 @@
 # Icotar
-## Colorful Icon Avatars
+### Colorful Icon Avatars
 Icotar generates simple, playful avatars for your app or website. Based on the lovable avatars from Yik Yak, each avatar consists of a colorful background and a recognizable symbol. All colors and icons are hand-picked from [Material Design](https://material.io/).
 
 Setting up Icotars is easy with a simple and free HTTP API that you can use without an account!
 
-### How to Use Icotar
+## How to Use Icotar
 Icotar images may be requested just like a normal image. Our HTTP-API is based on the system built by the fine folks of Gravatar.
 
 #### Base Request
@@ -16,7 +16,7 @@ Where `:hash` is replaced with anything you like. But **don't** use any sensitiv
 ```
 https://icotar.com/avatar/craig
 ```
-![craig](https://icotar.com/avatar/craig "Craig")
+<img src="https://icotar.com/avatar/craig" width="80" height="80" alt="craig" title="craig">
 
 #### File Types
 All avatars are served as SVG files by default. If you require a **file-type extension** then you can add an optional `.svg` extension to that URL:
@@ -33,13 +33,17 @@ By default, PNG images are presented at 80px by 80px if no size parameter is sup
 ```
 https://icotar.com/avatar/craig.png?s=200
 ```
-![craig](https://icotar.com/avatar/craig?s=20 "Craig")
-![craig](https://icotar.com/avatar/craig?s=80 "Craig")
-![craig](https://icotar.com/avatar/craig?s=200 "Craig")
+![craig](https://icotar.com/avatar/craig.png?s=20 "craig")
+![craig](https://icotar.com/avatar/craig.png?s=80 "craig")
+![craig](https://icotar.com/avatar/craig.png?s=200 "craig")
 
 You may request images anywhere from **1px up to 1024px**.
 
 #### Secure Requests
 All URL requests should start with HTTPS.
 
-##### Made with ❤️ by [Six Overground](http://sixoverground.com)
+## License
+
+[MIT License](https://github.com/sixoverground/icotar/LICENSE)
+
+Made with ❤️ by [Six Overground](http://sixoverground.com)
