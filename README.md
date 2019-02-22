@@ -1,4 +1,4 @@
-<p align="center"><img width="64" src="https://icotar.com/avatar/icotar"></p>
+<p align="center"><img src="https://icotar.com/avatar/static/images/logo.png"></p>
 <h1 align="center">Icotar</h1>
 
 <p align="center">

@@ -50,6 +50,10 @@ hr {
     align-items: center;
 }
 
+.header h1 {
+    flex-grow: 1;
+}
+
 .logo {
     border-radius: 50%;
     width: 64px;
