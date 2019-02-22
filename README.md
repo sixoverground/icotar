@@ -1,22 +1,20 @@
-<div style="display: flex; align-items: center;">
-    <img src="https://icotar.com/avatar/icotar" width="64" height="64" style="margin-right: 1em; border-radius: 50%;">
-    <span style="font-size: 32px;">Icotar</span>
-</div>
+<p align="center"><img width="64" src="https://icotar.com/avatar/icotar"></p>
+<h1 align="center">Icotar</h1>
 
----
+<p align="center">
+    <img src="https://icotar.com/avatar/ba8s2zi2564zywrz.png?s=40">
+    <img src="https://icotar.com/avatar/jmuha06nxn93tiyu.png?s=40">
+    <img src="https://icotar.com/avatar/52occ56yj5nyxg8s.png?s=40">
+    <img src="https://icotar.com/avatar/3rvoz9t3v1m15r6a.png?s=40">
+    <img src="https://icotar.com/avatar/9f85j5ah3mlwiq0c.png?s=40">
+    <img src="https://icotar.com/avatar/hndtrxlnd1c47zl6.png?s=40">
+    <img src="https://icotar.com/avatar/pfqrcjfiojbsalf4.png?s=40">
+    <img src="https://icotar.com/avatar/wcy3825im6a5oibn.png?s=40">
+    <img src="https://icotar.com/avatar/uucs7oanalvd4lpb.png?s=40">
+    <img src="https://icotar.com/avatar/q4pq5sbm13yy0yx9.png?s=40">
+</p>
 
-#### Colorful Icon Avatars
-
-![ba8s2zi2564zywrz](https://icotar.com/avatar/ba8s2zi2564zywrz.png?s=40 "ba8s2zi2564zywrz")
-![jmuha06nxn93tiyu](https://icotar.com/avatar/jmuha06nxn93tiyu.png?s=40 "jmuha06nxn93tiyu")
-![52occ56yj5nyxg8s](https://icotar.com/avatar/52occ56yj5nyxg8s.png?s=40 "52occ56yj5nyxg8s")
-![3rvoz9t3v1m15r6a](https://icotar.com/avatar/3rvoz9t3v1m15r6a.png?s=40 "3rvoz9t3v1m15r6a")
-![9f85j5ah3mlwiq0c](https://icotar.com/avatar/9f85j5ah3mlwiq0c.png?s=40 "9f85j5ah3mlwiq0c")
-![hndtrxlnd1c47zl6](https://icotar.com/avatar/hndtrxlnd1c47zl6.png?s=40 "hndtrxlnd1c47zl6")
-![pfqrcjfiojbsalf4](https://icotar.com/avatar/pfqrcjfiojbsalf4.png?s=40 "pfqrcjfiojbsalf4")
-![wcy3825im6a5oibn](https://icotar.com/avatar/wcy3825im6a5oibn.png?s=40 "wcy3825im6a5oibn")
-![uucs7oanalvd4lpb](https://icotar.com/avatar/uucs7oanalvd4lpb.png?s=40 "uucs7oanalvd4lpb")
-![q4pq5sbm13yy0yx9](https://icotar.com/avatar/q4pq5sbm13yy0yx9.png?s=40 "q4pq5sbm13yy0yx9")
+<h2 align="center"> Colorful Icon Avatars</h2>
 
 Icotar generates simple, playful avatars for your app or website. Based on the lovable avatars from Yik Yak, each avatar consists of a colorful background and a recognizable symbol. All colors and icons are hand-picked from [Material Design](https://material.io/).
 
