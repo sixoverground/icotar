@@ -1,36 +1,66 @@
 extends layout
 
 block content
-    h1 Icotar
-    h2 Colorful Icon Avatars
+    .header
+        img.logo(src="https://icotar.com/avatar/icotar")
+        h1 Icotar
+
+    hr
+
+    h4 Colorful Icon Avatars
+
+    .icotar-examples
+        img(src="https://icotar.com/avatar/ba8s2zi2564zywrz.png?s=40")
+        img(src="https://icotar.com/avatar/jmuha06nxn93tiyu.png?s=40")
+        img(src="https://icotar.com/avatar/52occ56yj5nyxg8s.png?s=40")
+        img(src="https://icotar.com/avatar/3rvoz9t3v1m15r6a.png?s=40")
+        img(src="https://icotar.com/avatar/9f85j5ah3mlwiq0c.png?s=40")
+        img(src="https://icotar.com/avatar/hndtrxlnd1c47zl6.png?s=40")
+        img(src="https://icotar.com/avatar/pfqrcjfiojbsalf4.png?s=40")
+        img(src="https://icotar.com/avatar/wcy3825im6a5oibn.png?s=40")
+        img(src="https://icotar.com/avatar/uucs7oanalvd4lpb.png?s=40")
+        img(src="https://icotar.com/avatar/q4pq5sbm13yy0yx9.png?s=40")
+
+
     p Icotar generates simple, playful avatars for your app or website. Based on the lovable avatars from Yik Yak, each avatar consists of a colorful background and a recognizable symbol. All colors and icons are hand-picked from <a href="https://material.io/">Material Design</a>.
     p Setting up Icotars is easy with a simple and free HTTP API that you can use without an account!
 
     <iframe src="https://ghbtns.com/github-btn.html?user=sixoverground&repo=icotar&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
 
-    h3 How to Use Icotar
-    p Icotar images may be requested just like a normal image. Our HTTP-API is based on the system built by the fine folks of Gravatar.
+    h2 How to Use Icotar
+    p Icotar images may be requested just like a normal image. Our HTTP-API is based on the system built by the fine folks at Gravatar.
 
     h4 Base Request
     p The most basic image request URL looks like this:
-    code https://icotar.com/avatar/:hash
-    p Where <pre>:hash</pre> is replaced with anything you like. But <strong>don't</strong> use any sensitive or personal data here! For example, here is a base URL:
-    code https://icotar.com/avatar/craig
-    img(src='https://icotar.com/avatar/craig')
+    pre
+        code https://icotar.com/avatar/:hash
+    p Where <code>:hash</code> is replaced with anything you like. But <strong>don't</strong> use any sensitive or personal data here! For example, here is a base URL:
+    pre
+        code https://icotar.com/avatar/craig
+    p 
+        img(src='https://icotar.com/avatar/craig' width='80' height='80')
 
     h4 File Types
-    p All avatars are served as SVG files by default. If you require a <strong>file-type extension</strong> then you can add an optional <pre>.svg</pre> extension to that URL:
-    code https://icotar.com/avatar/craig.svg
+    p All avatars are served as SVG files by default. If you require a <strong>file-type extension</strong> then you can add an optional <code>.svg</code> extension to that URL:
+    pre
+        code https://icotar.com/avatar/craig.svg
     p Icotar also supports PNG files:
-    code https://icotar.com/avatar/craig.png
+    pre
+        code https://icotar.com/avatar/craig.png
 
     h4 Size
-    p By default, PNG images are presented at 80px by 80px if no size parameter is supplied. You may request a specific image size, which will be dynamically delivered from Icotar by using the <pre>s=</pre> or <pre>size=</pre> parameter and passing a single pizel dimension (since Icotars are square):
-    code https://icotar.com/avatar/craig.png?s=200
-    img(src='https://icotar.com/avatar/craig?s=20')
-    img(src='https://icotar.com/avatar/craig?s=80')
-    img(src='https://icotar.com/avatar/craig?s=200')
+    p By default, PNG images are presented at 80px by 80px if no size parameter is supplied. You may request a specific image size, which will be dynamically delivered from Icotar by using the <code>s=</code> or <code>size=</code> parameter and passing a single pizel dimension (since Icotars are square):
+    pre
+        code https://icotar.com/avatar/craig.png?s=200
+    p.image-sizes
+        img(src='https://icotar.com/avatar/craig.png?s=20')
+        img(src='https://icotar.com/avatar/craig.png?s=80')
+        img(src='https://icotar.com/avatar/craig.png?s=150')
     p You may request images anywhere from <strong>1px up to 1024px</strong>.
 
     h4 Secure Requests
     p All URL requests should start with HTTPS.
+
+    h2 License
+
+    p <a href="https://opensource.org/licenses/MIT">MIT License</a>

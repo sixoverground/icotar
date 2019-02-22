@@ -1,4 +1,11 @@
-# Icotar
+<div style="display: flex; align-items: center;">
+    <img src="https://icotar.com/avatar/icotar" width="64" height="64" style="margin-right: 1em; border-radius: 50%;">
+    <span style="font-size: 32px;">Icotar</span>
+</div>
+
+---
+
+#### Colorful Icon Avatars
 
 ![ba8s2zi2564zywrz](https://icotar.com/avatar/ba8s2zi2564zywrz.png?s=40 "ba8s2zi2564zywrz")
 ![jmuha06nxn93tiyu](https://icotar.com/avatar/jmuha06nxn93tiyu.png?s=40 "jmuha06nxn93tiyu")
@@ -8,15 +15,15 @@
 ![hndtrxlnd1c47zl6](https://icotar.com/avatar/hndtrxlnd1c47zl6.png?s=40 "hndtrxlnd1c47zl6")
 ![pfqrcjfiojbsalf4](https://icotar.com/avatar/pfqrcjfiojbsalf4.png?s=40 "pfqrcjfiojbsalf4")
 ![wcy3825im6a5oibn](https://icotar.com/avatar/wcy3825im6a5oibn.png?s=40 "wcy3825im6a5oibn")
-
-#### Colorful Icon Avatars
+![uucs7oanalvd4lpb](https://icotar.com/avatar/uucs7oanalvd4lpb.png?s=40 "uucs7oanalvd4lpb")
+![q4pq5sbm13yy0yx9](https://icotar.com/avatar/q4pq5sbm13yy0yx9.png?s=40 "q4pq5sbm13yy0yx9")
 
 Icotar generates simple, playful avatars for your app or website. Based on the lovable avatars from Yik Yak, each avatar consists of a colorful background and a recognizable symbol. All colors and icons are hand-picked from [Material Design](https://material.io/).
 
 Setting up Icotars is easy with a simple and free HTTP API that you can use without an account!
 
 ## How to Use Icotar
-Icotar images may be requested just like a normal image. Our HTTP-API is based on the system built by the fine folks of Gravatar.
+Icotar images may be requested just like a normal image. Our HTTP-API is based on the system built by the fine folks at Gravatar.
 
 #### Base Request
 The most basic image request URL looks like this:
@@ -46,7 +53,7 @@ https://icotar.com/avatar/craig.png?s=200
 ```
 ![craig](https://icotar.com/avatar/craig.png?s=20 "craig")
 ![craig](https://icotar.com/avatar/craig.png?s=80 "craig")
-![craig](https://icotar.com/avatar/craig.png?s=200 "craig")
+![craig](https://icotar.com/avatar/craig.png?s=150 "craig")
 
 You may request images anywhere from **1px up to 1024px**.
 
@@ -55,6 +62,6 @@ All URL requests should start with HTTPS.
 
 ## License
 
-[MIT License](https://github.com/sixoverground/icotar/LICENSE)
+[MIT License](https://opensource.org/licenses/MIT)
 
 Made with ❤️ by [Six Overground](http://sixoverground.com)

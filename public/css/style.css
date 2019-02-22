@@ -1,0 +1,77 @@
+body {
+    background-color: #fff;
+    padding:50px;
+    font: 14px/1.5 "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color:#727272;
+    font-weight:400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color:#222;
+    /* margin:0 0 20px; */
+}
+
+a {
+    color:#e02177;
+    text-decoration:none;
+}
+
+a:hover, a:focus {
+    color:#cb1c6b;
+    font-weight: bold;
+}
+
+code, pre {
+    font-family:Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
+    color:#333;
+}
+
+pre {
+    padding:8px 15px;
+    background: #f8f8f8;
+    border-radius:5px;
+    border:1px solid #e5e5e5;
+    overflow-x: auto;
+}
+
+strong {
+    color:#222;
+    font-weight:700;
+}
+
+hr {
+    border:0;
+    background:#e5e5e5;
+    height:1px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    margin-right: 1em;
+}
+
+.icotar-examples img {
+    border-radius: 50%;
+    margin-right: 0.5em;
+}
+
+.image-sizes img {
+    margin-right: 0.5em;
+}
+
+.ion-heart {
+    color: #e02177;
+}
+
+@media print, screen and (max-width: 480px) {
+    body {
+        padding:15px;
+    }
+}

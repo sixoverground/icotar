@@ -15,6 +15,7 @@ const X2JS = require('x2js')
 const app = express()
 app.set('view engine', 'pug')
 app.use(morgan('dev'))
+app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 require.extensions['.svg'] = (module, filename) => {
