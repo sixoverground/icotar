@@ -1,5 +1,16 @@
 # Icotar
-### Colorful Icon Avatars
+
+![ba8s2zi2564zywrz](https://icotar.com/avatar/ba8s2zi2564zywrz.png?s=40 "ba8s2zi2564zywrz")
+![jmuha06nxn93tiyu](https://icotar.com/avatar/jmuha06nxn93tiyu.png?s=40 "jmuha06nxn93tiyu")
+![52occ56yj5nyxg8s](https://icotar.com/avatar/52occ56yj5nyxg8s.png?s=40 "52occ56yj5nyxg8s")
+![3rvoz9t3v1m15r6a](https://icotar.com/avatar/3rvoz9t3v1m15r6a.png?s=40 "3rvoz9t3v1m15r6a")
+![9f85j5ah3mlwiq0c](https://icotar.com/avatar/9f85j5ah3mlwiq0c.png?s=40 "9f85j5ah3mlwiq0c")
+![hndtrxlnd1c47zl6](https://icotar.com/avatar/hndtrxlnd1c47zl6.png?s=40 "hndtrxlnd1c47zl6")
+![pfqrcjfiojbsalf4](https://icotar.com/avatar/pfqrcjfiojbsalf4.png?s=40 "pfqrcjfiojbsalf4")
+![wcy3825im6a5oibn](https://icotar.com/avatar/wcy3825im6a5oibn.png?s=40 "wcy3825im6a5oibn")
+
+#### Colorful Icon Avatars
+
 Icotar generates simple, playful avatars for your app or website. Based on the lovable avatars from Yik Yak, each avatar consists of a colorful background and a recognizable symbol. All colors and icons are hand-picked from [Material Design](https://material.io/).
 
 Setting up Icotars is easy with a simple and free HTTP API that you can use without an account!
