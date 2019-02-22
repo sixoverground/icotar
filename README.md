@@ -45,7 +45,7 @@ https://icotar.com/avatar/craig.png
 ```
 
 #### Size
-By default, PNG images are presented at 80px by 80px if no size parameter is supplied. You may request a specific image size, which will be dynamically delivered from Icotar by using the `s=` or `size=` parameter and passing a single pizel dimension (since Icotars are square):
+By default, PNG images are presented at 80px by 80px if no size parameter is supplied. You may request a specific image size, which will be dynamically delivered from Icotar by using the `s=` or `size=` parameter and passing a single pixel dimension (since Icotars are square):
 ```
 https://icotar.com/avatar/craig.png?s=200
 ```
