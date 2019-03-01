@@ -20,6 +20,11 @@ app.use(morgan('dev'))
 app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
+const DEFAULT_SIZE = 80
+const MAX_SIZE = 1024
+const SVG_SIZE = 32
+const ICON_SIZE = 24
+
 const COLORS = [
   '#F44336',
   '#E91E63',
@@ -94,34 +99,35 @@ const generateSvg = (hash, colors, icons) => {
   const icon = pickone(rng, icons)
   let whiteIcon
   if (icon) {
-    const iconPath = `./icons/baseline-${icon}-24px.svg`
+    const iconPath = `./icons/baseline-${icon}-${ICON_SIZE}px.svg`
     const iconContent = fs.readFileSync(path.resolve(__dirname, iconPath), 'utf8')
     const x2js = new X2JS()
     const jsonObj = x2js.xml2js(iconContent)
+    const offset = (SVG_SIZE - ICON_SIZE) / 2
     // eslint-disable-next-line no-underscore-dangle
     jsonObj.svg._fill = '#fff'
     // eslint-disable-next-line no-underscore-dangle
-    jsonObj.svg._x = '4'
+    jsonObj.svg._x = offset
     // eslint-disable-next-line no-underscore-dangle
-    jsonObj.svg._y = '4'
+    jsonObj.svg._y = offset
     whiteIcon = x2js.js2xml(jsonObj)
   } else {
     whiteIcon = ''
   }
 
   return [
-    '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 32 32" version="1.1">',
-    `<path d="M0 0h32v32H0V0z" fill="${color}" />`,
+    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 ${SVG_SIZE} ${SVG_SIZE}" version="1.1">`,
+    `<path d="M0 0h${SVG_SIZE}v${SVG_SIZE}H0V0z" fill="${color}" />`,
     whiteIcon,
     '</svg>',
   ].join('')
 }
 
 const trimSize = (size) => {
-  const parsedSize = Number.isNaN(size) ? 80 : size
+  const parsedSize = Number.isNaN(size) ? DEFAULT_SIZE : size
   const sizeInt = parseInt(parsedSize, 10)
   const minSize = Math.max(sizeInt, 1)
-  return Math.min(minSize, 1024)
+  return Math.min(minSize, MAX_SIZE)
 }
 
 const router = express.Router()
@@ -136,11 +142,11 @@ router.get('/avatar/:hash.svg', (req, res) => {
 
 router.get('/avatar/:hash.png', async (req, res) => {
   const { hash } = req.params
-  const size = req.query.s || req.query.size || 80
+  const size = req.query.s || req.query.size || DEFAULT_SIZE
   const trimmedSize = trimSize(size)
   const svg = generateSvg(hash, COLORS, ICONS)
   const png = await sharp(Buffer.from(svg), {
-    density: 72 * trimmedSize / 32,
+    density: 72 * trimmedSize / SVG_SIZE,
   })
     .resize(trimmedSize, trimmedSize)
     .png()
@@ -168,11 +174,11 @@ router.get('/avatar.svg', (req, res) => {
 
 router.get('/avatar.png', async (req, res) => {
   const hash = ''
-  const size = req.query.s || req.query.size || 80
+  const size = req.query.s || req.query.size || DEFAULT_SIZE
   const trimmedSize = trimSize(size)
   const svg = generateSvg(hash, COLORS, [])
   const png = await sharp(Buffer.from(svg), {
-    density: 72 * trimmedSize / 32,
+    density: 72 * trimmedSize / SVG_SIZE,
   })
     .resize(trimmedSize, trimmedSize)
     .png()
