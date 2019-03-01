@@ -1,9 +1,11 @@
 const dotenv = require('dotenv')
 const path = require('path')
+
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ path: path.join(__dirname, '/.env') })
 }
-require('newrelic') 
+
+require('newrelic')
 const express = require('express')
 const fs = require('fs')
 const morgan = require('morgan')
@@ -18,11 +20,7 @@ app.use(morgan('dev'))
 app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
-require.extensions['.svg'] = (module, filename) => {
-  module.exports = fs.readFileSync(filename, 'utf8');
-}
-
-const colors = [
+const COLORS = [
   '#F44336',
   '#E91E63',
   '#9C27B0',
@@ -41,7 +39,7 @@ const colors = [
   '#FF5722',
 ]
 
-const icons = [
+const ICONS = [
   'ac_unit',
   'adjust',
   'airplanemode_active',
@@ -83,16 +81,12 @@ const icons = [
   'traffic',
   'vpn_key',
   'waves',
-  'weekend'
+  'weekend',
 ]
 
-const integer = (r, min, max) => {
-  return Math.floor(r() * (max - min + 1) + min)
-}
+const integer = (r, min, max) => Math.floor(r() * (max - min + 1) + min)
 
-const pickone = (r, arr) => {
-  return arr[integer(r, 0, arr.length - 1)]
-}
+const pickone = (r, arr) => arr[integer(r, 0, arr.length - 1)]
 
 const generateSvg = (hash, colors, icons) => {
   const rng = seedrandom(hash)
@@ -100,17 +94,20 @@ const generateSvg = (hash, colors, icons) => {
   const icon = pickone(rng, icons)
   let whiteIcon
   if (icon) {
-    const iconContent = require('./icons/baseline-' + icon + '-24px.svg')
+    const iconPath = `./icons/baseline-${icon}-24px.svg`
+    const iconContent = fs.readFileSync(path.resolve(__dirname, iconPath), 'utf8')
     const x2js = new X2JS()
     const jsonObj = x2js.xml2js(iconContent)
+    // eslint-disable-next-line no-underscore-dangle
     jsonObj.svg._fill = '#fff'
+    // eslint-disable-next-line no-underscore-dangle
     jsonObj.svg._x = '4'
+    // eslint-disable-next-line no-underscore-dangle
     jsonObj.svg._y = '4'
     whiteIcon = x2js.js2xml(jsonObj)
   } else {
     whiteIcon = ''
   }
-  
 
   return [
     '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 32 32" version="1.1">',
@@ -121,86 +118,85 @@ const generateSvg = (hash, colors, icons) => {
 }
 
 const trimSize = (size) => {
-  const parsedSize = isNaN(size) ? 80 : size
-  const sizeInt = parseInt(parsedSize)
+  const parsedSize = Number.isNaN(size) ? 80 : size
+  const sizeInt = parseInt(parsedSize, 10)
   const minSize = Math.max(sizeInt, 1)
   return Math.min(minSize, 1024)
 }
 
 const router = express.Router()
 
-router.get('/avatar/:hash.svg', (req, res, next) => {
-  const hash = req.params.hash
-  const svg = generateSvg(hash, colors, icons)
+router.get('/avatar/:hash.svg', (req, res) => {
+  const { hash } = req.params
+  const svg = generateSvg(hash, COLORS, ICONS)
   res.status(200)
   res.setHeader('Content-Type', 'image/svg+xml')
   return res.end(svg)
 })
 
-router.get('/avatar/:hash.png', async (req, res, next) => {
-  const hash = req.params.hash
+router.get('/avatar/:hash.png', async (req, res) => {
+  const { hash } = req.params
   const size = req.query.s || req.query.size || 80
   const trimmedSize = trimSize(size)
-  const svg = generateSvg(hash, colors, icons)
+  const svg = generateSvg(hash, COLORS, ICONS)
   const png = await sharp(Buffer.from(svg), {
-      density: 72 * trimmedSize / 32
-    })
-    .resize(trimmedSize, trimmedSize)
-    .png()
-    .toBuffer()
-  res.status(200)
-  res.setHeader('Content-Type', 'image/png')
-  return res.end(png)
-})
-
-router.get('/avatar/:hash', (req, res, next) => {
-  const hash = req.params.hash
-  const svg = generateSvg(hash, colors, icons)
-  res.status(200)
-  res.setHeader('Content-Type', 'image/svg+xml')
-  return res.end(svg)
-})
-
-router.get('/avatar.svg', (req, res, next) => {
-  const hash = ''
-  const svg = generateSvg(hash, colors, [])
-  res.status(200)
-  res.setHeader('Content-Type', 'image/svg+xml')
-  return res.end(svg)
-})
-
-router.get('/avatar.png', async (req, res, next) => {
-  const hash = ''
-  const size = req.query.s || req.query.size || 80
-  const trimmedSize = trimSize(size)
-  const svg = generateSvg(hash, colors, [])
-  const png = await sharp(Buffer.from(svg), {
-      density: 72 * trimmedSize / 32
-    })
-    .resize(trimmedSize, trimmedSize)
-    .png()
-    .toBuffer()
-  res.status(200)
-  res.setHeader('Content-Type', 'image/png')
-  return res.end(png)
-})
-
-router.get('/avatar', (req, res, next) => {
-  const hash = ''
-  const svg = generateSvg(hash, colors, [])
-  res.status(200)
-  res.setHeader('Content-Type', 'image/svg+xml')
-  return res.end(svg)
-})
-
-router.get('/', (req, res, next) => {
-  return res.render('welcome', {
-    title: 'Icotar - Colorful Icon Avatars'
+    density: 72 * trimmedSize / 32,
   })
+    .resize(trimmedSize, trimmedSize)
+    .png()
+    .toBuffer()
+  res.status(200)
+  res.setHeader('Content-Type', 'image/png')
+  return res.end(png)
 })
+
+router.get('/avatar/:hash', (req, res) => {
+  const { hash } = req.params
+  const svg = generateSvg(hash, COLORS, ICONS)
+  res.status(200)
+  res.setHeader('Content-Type', 'image/svg+xml')
+  return res.end(svg)
+})
+
+router.get('/avatar.svg', (req, res) => {
+  const hash = ''
+  const svg = generateSvg(hash, COLORS, [])
+  res.status(200)
+  res.setHeader('Content-Type', 'image/svg+xml')
+  return res.end(svg)
+})
+
+router.get('/avatar.png', async (req, res) => {
+  const hash = ''
+  const size = req.query.s || req.query.size || 80
+  const trimmedSize = trimSize(size)
+  const svg = generateSvg(hash, COLORS, [])
+  const png = await sharp(Buffer.from(svg), {
+    density: 72 * trimmedSize / 32,
+  })
+    .resize(trimmedSize, trimmedSize)
+    .png()
+    .toBuffer()
+  res.status(200)
+  res.setHeader('Content-Type', 'image/png')
+  return res.end(png)
+})
+
+router.get('/avatar', (req, res) => {
+  const hash = ''
+  const svg = generateSvg(hash, COLORS, [])
+  res.status(200)
+  res.setHeader('Content-Type', 'image/svg+xml')
+  return res.end(svg)
+})
+
+router.get('/', (req, res) => res.render('welcome', {
+  title: 'Icotar - Colorful Icon Avatars',
+}))
 
 app.use('/', router)
 
 const port = process.env.PORT || 5000
 const env = app.get('env')
+// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`App is listening on port ${port} in ${env} mode!`))
