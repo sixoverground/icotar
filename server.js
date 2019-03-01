@@ -14,9 +14,21 @@ const favicon = require('serve-favicon')
 const sharp = require('sharp')
 const X2JS = require('x2js')
 
+const requireSSL = (req, res, next) => {
+  if (
+    !req.secure
+    && req.get('x-forwarded-proto') !== 'https'
+    && process.env.NODE_ENV === 'production'
+  ) {
+    return res.redirect(`https://${req.get('host')}${req.url}`)
+  }
+  return next()
+}
+
 const app = express()
 app.set('view engine', 'pug')
 app.use(morgan('dev'))
+app.use(requireSSL)
 app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
