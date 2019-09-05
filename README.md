@@ -20,6 +20,17 @@ Icotar generates simple, playful avatars for your app or website. Based on the l
 
 Setting up Icotars is easy with a simple and free HTTP API that you can use without an account!
 
+### Colorful Initials Avatars (NEW!)
+[[Read initials documentation|initials]]
+
+<p>
+    <img src="https://icotar.com/initials/Craig%20Phares.png?s=40">
+    <img src="https://icotar.com/initials/Jake%20Sully.png?s=40">
+    <img src="https://icotar.com/initials/Neytiri.png?s=40">
+</p>
+
+Generate colorful, customizable initials for any name on the fly!
+
 ## How to Use Icotar
 Icotar images may be requested just like a normal image. Our HTTP-API is based on the system built by the fine folks at Gravatar.
 
