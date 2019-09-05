@@ -21,7 +21,7 @@ Icotar generates simple, playful avatars for your app or website. Based on the l
 Setting up Icotars is easy with a simple and free HTTP API that you can use without an account!
 
 ### Colorful Initials Avatars (NEW!)
-[[Read initials documentation|initials]]
+[Read initials documentation](https://github.com/sixoverground/icotar/wiki/initials)
 
 <p>
     <img src="https://icotar.com/initials/Craig%20Phares.png?s=40">
