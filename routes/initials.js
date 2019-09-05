@@ -23,7 +23,7 @@ const generateSvg = (name, colors, backgroundColor, foregroundColor) => {
   const firstInitial = firstName.length > 0 ? firstName[0] : ''
   const lastInitial = lastName.length > 0 ? lastName[0] : ''
   const initials = `${firstInitial}${lastInitial}`.toUpperCase()
-  const letters = `<text font-family="sans-serif" font-size="14px" x="50%" y="50%" dy="0.3em" fill="#${textColor}" text-anchor="middle">${initials}</text>`
+  const letters = `<text font-family="Helvetica" font-size="14px" x="50%" y="50%" dy="0.3em" fill="#${textColor}" text-anchor="middle">${initials}</text>`
 
   return [
     '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"',
