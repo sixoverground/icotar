@@ -183,10 +183,8 @@ const generateSvg = (hash, colors, icons) => {
     whiteIcon = ''
   }
   return [
-    '<svg xmlns="http://www.w3.org/2000/svg"',
-    ' xmlns:xlink="http://www.w3.org/1999/xlink"',
+    '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"',
     ` style="isolation:isolate" viewBox="0 0 ${SVG_SIZE} ${SVG_SIZE}"`,
-    ' version="1.1">',
     `<path d="M0 0h${SVG_SIZE}v${SVG_SIZE}H0V0z" fill="${color}" />`,
     whiteIcon,
     '</svg>',
@@ -211,13 +209,15 @@ const generatePng = (svg, size) => {
 
 const router = express.Router()
 
-router.get('/avatar/:hash.svg', (req, res) => {
+const getSvgHash = (req, res) => {
   const { hash } = req.params
   const svg = generateSvg(hash, COLORS, ICONS)
   res.status(200)
   res.setHeader('Content-Type', 'image/svg+xml')
   return res.end(svg)
-})
+}
+
+router.get('/avatar/:hash.svg', (req, res) => getSvgHash(req, res))
 
 router.get('/avatar/:hash.png', async (req, res) => {
   const { hash } = req.params
@@ -229,21 +229,17 @@ router.get('/avatar/:hash.png', async (req, res) => {
   return res.end(png)
 })
 
-router.get('/avatar/:hash', (req, res) => {
-  const { hash } = req.params
-  const svg = generateSvg(hash, COLORS, ICONS)
-  res.status(200)
-  res.setHeader('Content-Type', 'image/svg+xml')
-  return res.end(svg)
-})
+router.get('/avatar/:hash', (req, res) => getSvgHash(req, res))
 
-router.get('/avatar.svg', (req, res) => {
+const getDefaultSvgHash = (req, res) => {
   const hash = ''
   const svg = generateSvg(hash, COLORS, [])
   res.status(200)
   res.setHeader('Content-Type', 'image/svg+xml')
   return res.end(svg)
-})
+}
+
+router.get('/avatar.svg', (req, res) => getDefaultSvgHash(req, res))
 
 router.get('/avatar.png', async (req, res) => {
   const hash = ''
@@ -255,13 +251,7 @@ router.get('/avatar.png', async (req, res) => {
   return res.end(png)
 })
 
-router.get('/avatar', (req, res) => {
-  const hash = ''
-  const svg = generateSvg(hash, COLORS, [])
-  res.status(200)
-  res.setHeader('Content-Type', 'image/svg+xml')
-  return res.end(svg)
-})
+router.get('/avatar', (req, res) => getDefaultSvgHash(req, res))
 
 router.get('/', (req, res) => res.render('welcome', {
   title: 'Icotar - Colorful Icon Avatars',
