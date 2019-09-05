@@ -1,0 +1,71 @@
+extends ../layout
+
+block content
+    .header
+        img.logo(src="https://icotar.com/avatar/icotar")
+        h1 Icotar
+        <iframe src="https://ghbtns.com/github-btn.html?user=sixoverground&repo=icotar&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
+    hr
+
+    h2 Colorful Initials Avatars (NEW!) 
+    p <a href="/">Go to main documentation</a>
+
+    .icotar-examples
+        img(src="https://icotar.com/initials/Craig%20Phares.png?s=40")
+        img(src="https://icotar.com/initials/Jake%20Sully.png?s=40")
+        img(src="https://icotar.com/initials/Neytiri.png?s=40")
+
+    p Generate colorful, customizable initials for any name on the fly!
+
+    h2 How to Use Initials Avatars
+    p Initials images may be requested just like regular Icotar images.
+
+    h4 Base Request
+    p The most basic initials image request URL looks like this:
+    pre
+        code https://icotar.com/initials/:name
+    p Where <code>:name</code> is replaced with any name you like. Remember that spaces will become URL encoded. But <strong>don't</strong> use any sensitive or personal data here! For example, here is a base URL:
+    pre
+        code https://icotar.com/initials/Jake%20Sully
+    p 
+        img(src='https://icotar.com/initials/Jake%20Sully' width='80' height='80')
+
+    h4 File Types
+    p All initials avatars are served as SVG files by default. If you require a <strong>file-type extension</strong> then you can add an optional <code>.svg</code> extension to that URL:
+    pre
+        code https://icotar.com/initials/Jake%20Sully.svg
+    p Icotar initials avatars also support PNG files:
+    pre
+        code https://icotar.com/initials/Jake%20Sully.png
+
+    h4 Size
+    p By default, PNG images are presented at 80px by 80px if no size parameter is supplied. You may request a specific image size, which will be dynamically delivered from Icotar by using the <code>s=</code> or <code>size=</code> parameter and passing a single pixel dimension (since Icotars are square):
+    pre
+        code https://icotar.com/initials/Jake%20Sully.png?s=200
+    p.image-sizes
+        img(src='https://icotar.com/initials/Jake%20Sully.png?s=20')
+        img(src='https://icotar.com/initials/Jake%20Sully.png?s=80')
+        img(src='https://icotar.com/initials/Jake%20Sully.png?s=150')
+    p You may request images anywhere from <strong>1px up to 1024px</strong>.
+
+    h4 Background Color
+    p By default, the background color will be randomly determined by the name provided to Icotar. If you want to specify a background color, use the <code>bg=</code> parameter and pass a hexadecimal color value (without the #):
+    pre
+      code https://icotar.com/initials/Jake%20Sully.png?bg=e91e63
+    p
+        img(src='https://icotar.com/initials/Jake%20Sully?bg=e91e63' width='80' height='80')
+
+    h4 Text color
+    p By default, the text color will be set to white. If you want to specify a text color, use the <code>fg=</code> paramter and pass a hexadecimal color value (without the #):
+    pre
+      code https://icotar.com/initials/Jake%20Sully.png?fg=000051
+    p
+        img(src='https://icotar.com/initials/Jake%20Sully?fg=000051' width='80' height='80')
+
+    h4 Secure Requests
+    p All URL requests should start with HTTPS.
+
+    h2 License
+
+    p <a href="https://opensource.org/licenses/MIT">MIT License</a>
