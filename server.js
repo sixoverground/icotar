@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const dotenv = require('dotenv')
 const path = require('path')
 
@@ -29,10 +30,19 @@ app.use(requireSSL)
 app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
+// Log who is accessing Icotar
+app.use((req, res, next) => {
+  const { url, ip, hostname } = req
+  const reqPath = req.path
+  const referrer = req.get('Referrer')
+  const userAgent = req.get('User-Agent')
+  console.log(`url=${url} path=${reqPath} ip=${ip} hostname=${hostname} referrer=${referrer} userAgent=${userAgent}`)
+  next()
+})
+
 app.use('/', router)
 
 const port = process.env.PORT || 5000
 const env = app.get('env')
-// eslint-disable-next-line no-console
 app.listen(port, () => console
   .log(`App is listening on port ${port} in ${env} mode!`))
