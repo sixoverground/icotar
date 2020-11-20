@@ -10,7 +10,7 @@ const {
 
 const router = express.Router()
 
-const generateSvg = (name, colors, backgroundColor, foregroundColor) => {
+const generateSvg = (name, colors, backgroundColor, foregroundColor, offset) => {
   const rng = seedrandom(name)
   const hexColor = backgroundColor ? `#${backgroundColor}` : backgroundColor
   const color = hexColor || pickone(rng, colors)
@@ -23,7 +23,8 @@ const generateSvg = (name, colors, backgroundColor, foregroundColor) => {
   const firstInitial = firstName.length > 0 ? firstName[0] : ''
   const lastInitial = lastName.length > 0 ? lastName[0] : ''
   const initials = `${firstInitial}${lastInitial}`.toUpperCase()
-  const letters = `<text font-family="Helvetica" font-size="14px" x="50%" y="50%" fill="#${textColor}" alignment-baseline="central" text-anchor="middle">${initials}</text>`
+
+  const letters = `<text font-family="Helvetica" font-size="14px" x="50%" y="50%" dy="${offset}em" fill="#${textColor}" alignment-baseline="central" text-anchor="middle">${initials}</text>`
 
   return [
     '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"',
@@ -37,7 +38,7 @@ const generateSvg = (name, colors, backgroundColor, foregroundColor) => {
 const getSvgName = (req, res) => {
   const { name } = req.params
   const { bg, fg } = req.query
-  const svg = generateSvg(name, COLORS, bg, fg)
+  const svg = generateSvg(name, COLORS, bg, fg, 0)
   res.status(200)
   res.setHeader('Content-Type', 'image/svg+xml')
   return res.end(svg)
@@ -49,7 +50,7 @@ router.get('/:name.png', async (req, res) => {
   const { name } = req.params
   const { bg, fg } = req.query
   const size = req.query.s || req.query.size || DEFAULT_SIZE
-  const svg = generateSvg(name, COLORS, bg, fg)
+  const svg = generateSvg(name, COLORS, bg, fg, 0.3)
   const png = await generatePng(svg, size)
   res.status(200)
   res.setHeader('Content-Type', 'image/png')
