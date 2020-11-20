@@ -50,7 +50,7 @@ router.get('/:name.png', async (req, res) => {
   const { name } = req.params
   const { bg, fg } = req.query
   const size = req.query.s || req.query.size || DEFAULT_SIZE
-  const svg = generateSvg(name, COLORS, bg, fg, 0.3)
+  const svg = generateSvg(name, COLORS, bg, fg, 0.35)
   const png = await generatePng(svg, size)
   res.status(200)
   res.setHeader('Content-Type', 'image/png')
