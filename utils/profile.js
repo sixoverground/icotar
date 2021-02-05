@@ -1,24 +1,26 @@
 const seedrandom = require('seedrandom');
-const NAMES = require("./names.json");
+const NAMES = require("../profile_data/names.json");
+const IMGS = require("../profile_data/profile_imgs.json");
 const {pickone} = require('./avatar');
+const fs = require('fs');
 
 const generateProfile = (hash, gender=null) => {
-    let names = Object.keys(NAMES.first).map(key => NAMES.first[key]).flat();
-    if (gender && NAMES.first.hasOwnProperty(gender)) {
-        names = NAMES.first[gender];
-        if (gender !== 'neutral') names.push(...NAMES.first.neutral);
-    }
     const rng = seedrandom(hash);
+    if (!gender || !['male', 'female'].includes(gender)) {
+        gender = pickone(rng, ['male', 'female']);
+    }
+    const names = [];
+    names.push(...NAMES.first[gender]);
+    names.push(...NAMES.first.neutral);
     const fname = pickone(rng, names);
     const lname = pickone(rng, NAMES.last);
+    const url = pickone(rng, IMGS[gender]);
     return {
         name: `${fname} ${lname}`,
-        url: '',
-        bio: ''
+        url,
+        bio: '',
+        id: hash,
     }
 };
 
-module.exports = {
-    NAMES,
-    generateProfile
-}
+module.exports = generateProfile

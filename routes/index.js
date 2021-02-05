@@ -2,8 +2,7 @@ const express = require('express')
 const avatarRouter = require('./avatar')
 const docsRouter = require('./docs')
 const initialsRouter = require('./initials')
-const profileRouter = require('./profiles')
-const randomstring = require('randomstring');
+const profileRouter = require('./profile')
 const {
   COLORS,
   DEFAULT_SIZE,
@@ -36,20 +35,10 @@ router.get('/avatar.png', async (req, res) => {
 
 router.get('/avatar', (req, res) => getDefaultSvgHash(req, res))
 
-const getRandomProfile = (req, res) => {
-  const { hash } = randomstring.generate();
-  const gender = "neutral";
-  const json = generateProfile(hash, gender);
-  res.status(200);
-  res.setHeader('Content-Type', 'application/json');
-  return res.end(JSON.stringify(json, null, 4));
-}
-
 router.use('/avatar', avatarRouter)
 router.use('/initials', initialsRouter)
 router.use('/docs', docsRouter)
-router.use('/profiles', profileRouter)
-router.get('/profiles', (req, res) => getRandomProfile(req, res))
+router.use('/profile', profileRouter)
 
 router.get('/', (req, res) => res.render('welcome', {
   title: 'Icotar - Colorful Icon Avatars',
