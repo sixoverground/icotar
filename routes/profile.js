@@ -1,8 +1,7 @@
 const express = require('express');
 const randomstring = require('randomstring');
-const generateProfile = require('../utils/profile');
+const {generateProfile} = require('../utils/profile');
 const path = require('path');
-    
 const router = express.Router();
 
 router.use('/visualization', express.static(path.join(__dirname, '../public/visualization')));

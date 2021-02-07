@@ -4,6 +4,64 @@ const IMGS = require("../profile_data/profile_imgs.json");
 const {pickone} = require('./avatar');
 const fs = require('fs');
 
+const TEMPLATES = [
+    '{job} at {company} based out of {location}.',
+    '{job}, {company}. Based in {location}.',
+    'A {location}-based {job}, currently employed at {company}.',
+]
+
+const JOBS = {
+    'Accountant': [
+        'TaxPro',
+        'Simple Saving',
+        'LMW Accounting',
+        '{location} Health Center',
+    ],
+    'Software developer': [
+        '{lastname} Technology Solutions',
+        'Roxeltech',
+        'Televescence',
+        'Softwear',
+    ],
+    // 'Project manager': [
+
+    // ],
+    'Attorney': [
+        "Baker Brothers Attorneys",
+        "Greenboro Consulting",
+        "{lastname} and {lastname} Law Firm",
+        'their epynomous law firm',
+    ],
+    'Nurse': [
+        'North {location} Hospital',
+        'First Call Medical Services',
+        'the office of Rhonda Bakeweather, M.D',
+        '{location} Public Schools',
+    ],
+    'Product designer': [
+        'Cooking Hub',
+        'Southside Electronics',
+        'Electric Entertainment',
+        'Southside Eatery',
+    ],
+}
+
+const LOCATIONS = [
+    'New York City',
+    'Los Angeles',
+    'San Francisco',
+    'Houston',
+    'London',
+    'Paris',
+    'Milan',
+    'Dubai',
+    'Rio de Janeiro',
+    'Seoul',
+    'Tokyo',
+    'Chicago',
+    'Shangai',
+]
+
 const generateProfile = (hash, gender=null) => {
     const rng = seedrandom(hash);
     if (!gender || !['male', 'female'].includes(gender)) {
@@ -13,14 +71,29 @@ const generateProfile = (hash, gender=null) => {
     names.push(...NAMES.first[gender]);
     names.push(...NAMES.first.neutral);
     const fname = pickone(rng, names);
+    let mi;
+    if (pickone(rng, Array(10).fill(0).map((_, i) => i)) > 7) {
+        mi = pickone(rng, 'abscdefghijklmnopqrstuvwxyz'.toUpperCase()) + '.';
+    }
     const lname = pickone(rng, NAMES.last);
+    const fullName = `${fname} ${mi ? mi + ' ' : ''}${lname}`;
+    const template = pickone(rng, TEMPLATES);
     const url = pickone(rng, IMGS[gender]);
+    const thumbnailUrl = url.replace(/dpr=.&h=.+&w=.+/, 'dpr=1&fit=crop&h=180&w=180');
+    const job = pickone(rng, Object.keys(JOBS));
+    const location = pickone(rng, LOCATIONS);
+    const company = pickone(rng, JOBS[job]).replace(/{lastname}/g, lname).replace(/{location}/g, location).replace(/{fullname}/g, fullName);
     return {
-        name: `${fname} ${lname}`,
-        url,
-        bio: '',
+        name: fullName,
+        image: {
+            url,
+            thumbnailUrl,
+        },
+        bio: template.replace(/{location}/g, location).replace(/{job}/g, job).replace(/{company}/g, company),
         id: hash,
     }
 };
 
-module.exports = generateProfile
+module.exports = {
+    generateProfile
+}
