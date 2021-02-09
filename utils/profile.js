@@ -1,6 +1,6 @@
 const seedrandom = require('seedrandom');
-const NAMES = require("../profile_data/names.json");
-const IMGS = require("../profile_data/profile_imgs.json");
+const NAMES = require('../profile_data/names.json');
+const IMGS = require('../profile_data/profile_imgs.json');
 const {pickone} = require('./avatar');
 const fs = require('fs');
 
@@ -8,6 +8,7 @@ const TEMPLATES = [
     '{job} at {company} based out of {location}.',
     '{job}, {company}. Based in {location}.',
     'A {location}-based {job}, currently employed at {company}.',
+    'Experienced {job} from {location}, currently working for {company}.',
 ]
 
 const JOBS = {
@@ -17,19 +18,22 @@ const JOBS = {
         'LMW Accounting',
         '{location} Health Center',
     ],
-    'Software developer': [
+    'Software Developer': [
         '{lastname} Technology Solutions',
         'Roxeltech',
         'Televescence',
         'Softwear',
     ],
-    // 'Project manager': [
-
-    // ],
+    'Project Manager': [
+        'Simplicity',
+        'Royal Consulting',
+        'Edutute',
+        'Iconify',
+    ],
     'Attorney': [
-        "Baker Brothers Attorneys",
-        "Greenboro Consulting",
-        "{lastname} and {lastname} Law Firm",
+        'Baker Brothers Attorneys',
+        'Greenboro Consulting',
+        '{lastname} and {lastname} Law Firm',
         'their epynomous law firm',
     ],
     'Nurse': [
@@ -38,7 +42,7 @@ const JOBS = {
         'the office of Rhonda Bakeweather, M.D',
         '{location} Public Schools',
     ],
-    'Product designer': [
+    'Product Designer': [
         'Cooking Hub',
         'Southside Electronics',
         'Electric Entertainment',

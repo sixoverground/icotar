@@ -23,6 +23,15 @@
             top: 20px;
             left: 20px;
         }
+        #refresh {
+            font-size: 32px;
+            padding: 10px;
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+        }
         #thumbnail {
             position: absolute;
             top: 20px;
@@ -39,5 +48,6 @@
     <img id="img">
     <h2 id="name"></h2>
     <p id="bio"></p>
+    <br><button id='refresh' type='button' onclick='refresh()'>REFRESH</button>
 </body>
 </html>

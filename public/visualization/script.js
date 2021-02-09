@@ -1,6 +1,9 @@
 const getParams = async () => {
     const parts = window.location.pathname.split('/');
     const hash = parts[parts.length-1];
+    if (hash === '') {
+        document.querySelector('#refresh').style.display = 'block';
+    }
     const res = await fetch(`../${hash}`);
     const json = await res.json();
     const nameelement = document.querySelector('#name');
@@ -13,4 +16,9 @@ const getParams = async () => {
     idelement.textContent = `ID: ${json.id}`;
     bioelement.textContent = json.bio;
     tnelement.src = json.image.thumbnailUrl;
+    console.log(hash);
+}
+
+const refresh = () => {
+    document.location.href = './';
 }
