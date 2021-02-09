@@ -14,8 +14,7 @@ const getProf = async (req, res) => {
     }
     const json = generateProfile(hash, gender);
     res.status(200);
-    res.setHeader('Content-Type', 'application/json');
-    return res.end(JSON.stringify(json, null, 4));
+    return res.json(json, null, 4);
 }
 
 router.get('/', (req, res) => getProf(req, res));
