@@ -74,8 +74,9 @@ const LOCATIONS = [
  * generateProfile() creates a user profile with a name, image url, and bio
  * all bashed on a hashed string
  * 
- * @param {String} hash 
- * @param {String} gender 
+ * @param {String} hash
+ * @param {String} gender
+ * @return {Object} bio
  */
 const generateProfile = (hash, gender=null) => {
     const rng = seedrandom(hash);
