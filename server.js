@@ -6,7 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ path: path.join(__dirname, '/.env') })
 }
 
-require('./newrelic')
+require('newrelic')
 const express = require('express')
 const morgan = require('morgan')
 const favicon = require('serve-favicon')
