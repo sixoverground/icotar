@@ -4,6 +4,7 @@ const IMGS = require('../profile_data/profile_imgs.json');
 const {pickone} = require('./avatar');
 const fs = require('fs');
 
+// possible templates for profile bios, with placeholders specified between braces
 const TEMPLATES = [
     '{job} at {company} based out of {location}.',
     '{job}, {company}. Based in {location}.',
@@ -11,6 +12,8 @@ const TEMPLATES = [
     'Experienced {job} from {location}, currently working for {company}.',
 ]
 
+// possible jobs for bios, matched with the possible employers for each job
+// some employers have placeholders specified between braces, similarly to bio templates
 const JOBS = {
     'Accountant': [
         'TaxPro',
@@ -50,6 +53,7 @@ const JOBS = {
     ],
 }
 
+// available locations
 const LOCATIONS = [
     'New York City',
     'Los Angeles',
@@ -66,6 +70,13 @@ const LOCATIONS = [
     'Shangai',
 ]
 
+/**
+ * generateProfile() creates a user profile with a name, image url, and bio
+ * all bashed on a hashed string
+ * 
+ * @param {String} hash 
+ * @param {String} gender 
+ */
 const generateProfile = (hash, gender=null) => {
     const rng = seedrandom(hash);
     if (!gender || !['male', 'female'].includes(gender)) {
@@ -88,7 +99,12 @@ const generateProfile = (hash, gender=null) => {
     const location = pickone(rng, LOCATIONS);
     const company = pickone(rng, JOBS[job]).replace(/{lastname}/g, lname).replace(/{location}/g, location).replace(/{fullname}/g, fullName);
     return {
-        name: fullName,
+        name: {
+            full: fullName,
+            first: fname,
+            middle: (mi ? mi : undefined),
+            last: lname,
+        },
         image: {
             url,
             thumbnailUrl,
