@@ -7,10 +7,11 @@ const router = express.Router();
 const getProf = async (req, res) => {
     let { hash } = req.params;
     const gender = req.query?.g || req.query?.gender;
+    const language = req.query?.l || req.query?.language;
     if (!hash) {
         hash = randomstring.generate(6);
     }
-    const json = generateProfile(hash, gender);
+    const json = generateProfile(hash, gender, language);
     res.status(200);
     return res.json(json, null, 4);
 }

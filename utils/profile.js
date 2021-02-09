@@ -1,8 +1,12 @@
 const seedrandom = require('seedrandom');
-const NAMES = require('../profile_data/names.json');
 const IMGS = require('../profile_data/profile_imgs.json');
 const {pickone} = require('./avatar');
 const fs = require('fs');
+const path = require('path');
+const LNAMES = require('../profile_data/lastnames.json');
+
+// a path to the directory containing names JSONs
+const NAMES_DIR = path.join(__dirname, '../profile_data/names');
 
 // possible templates for profile bios, with placeholders specified between braces
 const TEMPLATES = [
@@ -76,29 +80,33 @@ const LOCATIONS = [
  * 
  * @param {String} hash
  * @param {String} gender
+ * @param {String} language
  * @return {Object} bio
  */
-const generateProfile = (hash, gender=null) => {
+const generateProfile = (hash, gender, language) => {
     const rng = seedrandom(hash);
     if (!gender || !['male', 'female'].includes(gender)) {
         gender = pickone(rng, ['male', 'female']);
     }
-    const names = [];
-    names.push(...NAMES.first[gender]);
-    names.push(...NAMES.first.neutral);
+    if (!language || !fs.existsSync(path.join(NAMES_DIR, gender + '-human-names-' + language + '.json'))) {
+        language = 'en';
+    }
+    console.log(language);
+    const names = JSON.parse(fs.readFileSync(path.join(NAMES_DIR, gender + '-human-names-' + language + '.json')));
     const fname = pickone(rng, names);
     let mi;
     if (pickone(rng, Array(10).fill(0).map((_, i) => i)) > 7) {
-        mi = pickone(rng, 'abscdefghijklmnopqrstuvwxyz'.toUpperCase()) + '.';
+        mi = pickone(rng, 'abscdefghijklmnopqrstuvwxyz'.toUpperCase());
     }
-    const lname = pickone(rng, NAMES.last);
-    const fullName = `${fname} ${mi ? mi + ' ' : ''}${lname}`;
+    const lname = pickone(rng, LNAMES[language]);
+    const fullName = `${fname} ${mi ? mi + '. ' : ''}${lname}`;
     const template = pickone(rng, TEMPLATES);
     const url = pickone(rng, IMGS[gender]);
     const thumbnailUrl = url.replace(/dpr=.&h=.+&w=.+/, 'dpr=1&fit=crop&h=180&w=180');
     const job = pickone(rng, Object.keys(JOBS));
     const location = pickone(rng, LOCATIONS);
     const company = pickone(rng, JOBS[job]).replace(/{lastname}/g, lname).replace(/{location}/g, location).replace(/{fullname}/g, fullName);
+    
     return {
         name: {
             full: fullName,

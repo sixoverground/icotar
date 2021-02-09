@@ -9,7 +9,6 @@ const {
   generatePng,
   generateSvg,
 } = require('../utils/avatar')
-const { generateProfile } = require('../utils/profile')
 
 const router = express.Router()
 
