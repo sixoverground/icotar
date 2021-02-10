@@ -15,6 +15,7 @@
     "morgan": "^1.9.1",
     "newrelic": "^5.5.0",
     "pug": "^2.0.3",
+    "randomstring": "^1.1.5",
     "seedrandom": "^2.4.4",
     "serve-favicon": "^2.5.0",
     "sharp": "^0.23.0",

@@ -2,6 +2,7 @@ const express = require('express')
 const avatarRouter = require('./avatar')
 const docsRouter = require('./docs')
 const initialsRouter = require('./initials')
+const profileRouter = require('./profile')
 const {
   COLORS,
   DEFAULT_SIZE,
@@ -36,6 +37,7 @@ router.get('/avatar', (req, res) => getDefaultSvgHash(req, res))
 router.use('/avatar', avatarRouter)
 router.use('/initials', initialsRouter)
 router.use('/docs', docsRouter)
+router.use('/profile', profileRouter)
 
 router.get('/', (req, res) => res.render('welcome', {
   title: 'Icotar - Colorful Icon Avatars',
