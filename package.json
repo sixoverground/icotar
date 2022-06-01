@@ -17,7 +17,7 @@
     "pug": "^2.0.3",
     "seedrandom": "^2.4.4",
     "serve-favicon": "^2.5.0",
-    "sharp": "^0.23.0",
+    "sharp": "^0.30.5",
     "x2js": "^3.2.6"
   },
   "devDependencies": {
